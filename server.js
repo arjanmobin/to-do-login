@@ -8,11 +8,14 @@ const session = require('express-session');
 const flash = require('connect-flash');
 require('dotenv').config();
 
+const authRoute = require('./routes/authRoutes.js');
+const mongoose = require('./db/mongoose.js');
 
 // Setup
 const port = process.env.PORT || 3000;
 const app = express();
 
+// View Engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
@@ -30,21 +33,24 @@ app.use(session({
 }));
 
 // Middleware
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true,
+  cookie: {secure: false}
+}));
 app.use(flash());
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(morgan('dev'));
-app.use('/', authRoute);
+// app.use(morgan('dev'));
 app.use((req, res, next) => {
-    console.log('errors with middleware', req.flash('errorMessages'));
-    res.locals.errorMessages = req.flash('errorMessages');
-    res.locals.successMessage = req.flash('successMessage')
-    next();
+  res.locals.errorMessages = req.flash('errorMessages');
+  res.locals.successMessage = req.flash('successMessage');
+  next();
 })
 
 // Mount Routes
 app.use('/', authRoute)
 
 app.listen(port, () => {
-    console.log(`Web server up on port ${port}`);
+    console.log(`Web serber up on port ${port}`);
 })
