@@ -11,9 +11,6 @@ require('dotenv').config();
 const authRoute = require('./routes/authRoutes.js');
 const mongoose = require('./db/mongoose.js');
 
-//test tesst
-
-
 // Setup
 const port = process.env.PORT || 3000;
 const app = express();
