@@ -5,9 +5,36 @@
     <title>Home</title>
   </head>
   <body>
-    <h1>Your Homepage</h1>
-    <form action="/logout" method="post">
-      <input type="submit" value="logout">
+    <h1>Your Todos</h1>
+    <a href="/logout">
+        <button type="button" name="button">Log Out</button>
+    </a>
+    <br>
+    <h3>To Do:</h3>
+    {{#each incomplete}}
+
+      <span>
+        <p style="">{{item}} - {{priority}} -   <a href="/del/{{_id}}">Complete</a></p>
+
+      </span>
+
+
+
+    {{/each}}
+    <br>
+    <h3>Completed:</h3>
+    {{#each complete}}
+      <p style="text-decoration: line-through">{{Item}} - {{priority}}</p>
+
+    {{/each}}
+    <br>
+    <a href="/new">
+      <button type="button" name="button">New To Do</button>
+    </a>
+
+
+
+
     </form>
   </body>
 </html>

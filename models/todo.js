@@ -5,18 +5,19 @@ const todoSchema = mongoose.Schema({
         type: String,
         required: true,
       },
+      priority: {
+        type: Number,
+        required: false
+      },
       completed:{
         type: Boolean,
         required: true
-    },
-    date: {
-        type: Date,
+      },
+      user:{
+        type: String,
         required: true
-    },
-    priority: {
-        type: Number,
-        required: false
-    }
+      }
+
 })
 
 

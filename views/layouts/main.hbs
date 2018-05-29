@@ -5,11 +5,11 @@
     <title></title>
   </head>
   <body>
-    {{#each errorMessages}}
-      <p>{{message}}</p>
+    {{#each errors}}
+      <p style="color: red">{{message}}</p>
     {{/each}}
-    {{#each successMessage}}
-      <p>{{message}}</p>
+    {{#each successes}}
+      <p style="color: green">{{message}}</p>
     {{/each}}
     {{{body}}}
   </body>

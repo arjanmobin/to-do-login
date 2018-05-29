@@ -80,8 +80,12 @@ auth.post("/login", (req, res)=>{
           })
           .catch(e=>{
             req.flash("eMessages", {message: "An error occured loggin in"});
+            res.redirect("/login");
           })
       }
+    })
+    .catch(e=>{
+      req.flash("eMessages", {message: "User not found"});
     })
 })
 
